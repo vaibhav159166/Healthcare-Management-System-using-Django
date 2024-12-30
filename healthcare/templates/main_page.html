@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+<head>
+    <title>Login Options</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            color: #ffffff;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-top: 20px;
+            font-size: 42px;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .content-wrapper {
+            max-width: 80%;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 25px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        button {
+            background-color: rgba(76, 175, 80, 0.9);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 35px;
+            margin: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            background-color: rgba(69, 160, 73, 1);
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 30px;
+        }
+
+        .image-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 16px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <h1>Welcome to Our Helthcare</h1>
+        <div class="image-container">
+            <img src="{% static 'images/people_log.png' %}" alt="Patient Icon">
+            <img src="{% static 'images/doc_login.jpg' %}" alt="Doctor Icon">
+            <img src="{% static 'images/clinic_log.jfif' %}" alt="Clinic Icon">
+        </div>
+        <div class="button-container">
+            <button onclick="window.location.href='/patient-login/'">Patient Login</button>
+            <button onclick="window.location.href='/doctor-login/'">Doctor Login</button>
+            <button onclick="window.location.href='/clinic-login/'">Clinic Login</button>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Vaibhav Website | All rights reserved.
+    </footer>
+</body>
+</html>

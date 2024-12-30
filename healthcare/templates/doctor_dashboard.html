@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #3C5A99; 
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        header button {
+            background-color: #E74C3C; 
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        header button:hover {
+            background-color: #C0392B;
+        }
+
+        .container {
+            padding: 80px 20px 20px; 
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #3C5A99; 
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        table th {
+            background-color: #f1f6fb; 
+            color: #3C5A99; 
+            font-weight: 500;
+        }
+
+        table td {
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3C5A99; 
+        }
+
+        button {
+            background-color: #3C5A99; 
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2A4377; 
+        }
+
+        .notification-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .notification-list li {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .notification-list li:last-child {
+            border-bottom: none;
+        }
+
+        .notification-list li span {
+            font-weight: 400;
+            color: #777;
+        }
+
+        .section ul li a {
+            text-decoration: none;
+            color: #3C5A99;
+        }
+
+        .section ul li a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            header button {
+                margin-top: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <body>
+        <header>
+            <h1>Welcome, Dr. {{ doctor_data.first_name }} {{ doctor_data.last_name }}</h1>
+            <button onclick="logout()">Logout</button>
+        </header>
+    
+        <div class="container">
+            <!-- Upcoming Appointments -->
+            <div class="section">
+                <h2>Upcoming Appointments</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Time</th>
+                            <th>Notes</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data inserted -->
+                    </tbody>
+                </table>
+                <button onclick="viewAllAppointments()">View All Appointments</button>
+            </div>
+    
+            <!-- Patient Records -->
+            <div class="section">
+                <h2>Patient Records</h2>
+                <input type="text" placeholder="Search patients...">
+                <ul>
+                    <!-- Patient list -->
+                </ul>
+                <button onclick="addNewRecord()">Add New Patient Record</button>
+            </div>
+    
+            <!-- Notifications -->
+            <div class="section">
+                <h2>Notifications</h2>
+                <ul class="notification-list">
+                    <li>New Lab Report: Hello</li>
+                    <!--  -->
+                </ul>
+            </div>
+        </div>
+    </body>
+    
+    <script>
+        function logout() {
+            alert('Logging out...');
+        }
+
+        function viewAllAppointments() {
+            alert('Redirecting to all appointments...');
+        }
+
+        function addNewRecord() {
+            alert('Redirecting to add a new patient record...');
+        }
+    </script>
+
+</body>
+</html>

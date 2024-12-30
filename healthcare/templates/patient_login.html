@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Login</title>
+    <script>
+        function showRegistrationPopup() {
+            document.getElementById('registrationModal').style.display = 'block';
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function hideRegistrationPopup() {
+            document.getElementById('registrationModal').style.display = 'none';
+            document.getElementById('overlay').classList.remove('active');
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50; 
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+    
+        .login-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            animation: slideUp 0.6s ease-in-out;
+        }
+
+        .login-container img {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            text-align: left;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"], input[type="date"], select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="date"]:focus, select:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .popup-link {
+            color: #4CAF50;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .popup-link:hover {
+            text-decoration: underline;
+        }
+
+    /* Modal */
+#registrationModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+    width: 40%;
+    max-width: 500px;  
+    max-height: 80%;  
+    overflow-y: auto; 
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-in-out;
+    border: 2px solid #ddd; 
+}
+
+/* Modal Header */
+#registrationModal h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Form elements */
+#registrationModal form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.3s ease;
+}
+
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
+}
+
+/* Buttons */
+#registrationModal button[type="submit"],
+#registrationModal button[type="button"] {
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#registrationModal button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#registrationModal button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#registrationModal button[type="button"] {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#registrationModal button[type="button"]:hover {
+    background-color: #d32f2f;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+    </style>
+</head>
+<body>
+
+    
+    <div class="overlay" id="overlay" onclick="hideRegistrationPopup()"></div>
+
+    <div class="login-container">
+        <img src="{% static 'images/people_log.png' %}" alt="Patient Icon">
+        <h1>Patient Login</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="popup-link">Not registered? <a href="#" onclick="showRegistrationPopup()">Register here</a></p>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="registrationModal">
+        <h2>Register as a Patient</h2>
+        <form method="POST" action="{% url 'register_patient' %}">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" required><br>
+
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" required><br>
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" required><br>
+
+            <label for="date_of_birth">Date of Birth:</label>
+            <input type="date" name="date_of_birth" required><br>
+
+            <label for="gender">Gender:</label>
+            <select name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select><br>
+
+            <label for="phone_number">Phone Number:</label>
+            <input type="text" name="phone_number"><br>
+
+            <button type="submit">Register</button>
+            <button type="button" onclick="hideRegistrationPopup()">Close</button>
+        </form>
+    </div>
+
+</body>
+</html>
